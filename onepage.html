@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>牧集产品指数参考</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            mermaid.initialize({
+                startOnLoad: true,
+                theme: 'neutral',
+                flowchart: {
+                    useMaxWidth: true,
+                    htmlLabels: true,
+                    curve: 'basis'
+                },
+                themeVariables: {
+                    primaryColor: '#8B4513',
+                    primaryTextColor: '#333333',
+                    primaryBorderColor: '#CD853F',
+                    lineColor: '#D2B48C',
+                    secondaryColor: '#F5E6D8',
+                    tertiaryColor: '#FFF8F0'
+                }
+            });
+        });
+    </script>
+    <style>
+        body {
+            font-family: 'Noto Sans SC', Tahoma, Arial, Roboto, "Droid Sans", "Helvetica Neue", "Droid Sans Fallback", "Heiti SC", "Hiragino Sans GB", Simsun, sans-serif;
+            background-color: #F8F9FA;
+            color: #333333;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Noto Serif SC', serif;
+            color: #2C3E50;
+        }
+
+        .chart-card {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .chart-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .first-letter::first-letter {
+            font-size: 3.5rem;
+            font-weight: bold;
+            float: left;
+            line-height: 1;
+            margin-right: 0.2rem;
+            color: #2C3E50;
+        }
+
+        .indicator-card {
+            background-color: #F8F9FA;
+            border-left: 4px solid #2C3E50;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .glossary-item {
+            border-bottom: 1px solid #E9ECEF;
+            padding: 1rem 0;
+        }
+
+        .methodology-card {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 100%);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .mermaid {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="relative overflow-hidden bg-white border-b" style="height: auto; padding: 2rem 0;">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl">
+                <h1 class="text-3xl font-bold mb-4">
+                    <span class="block text-gray-800">2025年6月27日价格指数参考</span>
+                </h1>
+                <div class="text-sm text-gray-600 flex items-center space-x-4">
+                    <span>发布时间：2025-06-27 16:30:00</span>
+                    <span>|</span>
+                    <span>数据来源：牧集产品指数中心</span>
+                    <span>|</span>
+                    <span>指数编号：MK20250627-A</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 图表区域 -->
+    <section id="charts" class="py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 gap-6">
+                <!-- 指数汇总表格 -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4">2025年6月27日交易指数汇总</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 border-b text-left text-xs font-medium text-gray-500 uppercase tracking-wider">指数类别</th>
+                                    <th class="px-6 py-3 border-b text-left text-xs font-medium text-gray-500 uppercase tracking-wider">收盘指数</th>
+                                    <th class="px-6 py-3 border-b text-left text-xs font-medium text-gray-500 uppercase tracking-wider">日涨跌幅</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">龟排腱</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">58.50</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600">+0.86%</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">大米龙</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">58.92</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600">-0.07%</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">牛霖</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">57.42</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600">+0.21%</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">牛腩</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">41.64</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600">+0.19%</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">牛前后</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">44.34</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600">+0.54%</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">牛前八件套</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">52.56</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-0.01%</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">去盖臀肉</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">59.60</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600">-0.33%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 产品B图表 -->
+                <div class="chart-card p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold">龟排腱交易指数</h3>
+                        <div class="text-sm text-gray-500">
+                            <span class="px-2 py-1 bg-gray-100 rounded">指数：58.500</span>
+                            <span class="px-2 py-1 bg-red-50 text-red-600 rounded ml-2">+0.86%</span>
+                        </div>
+                    </div>
+                    <div class="w-full" style="height: 600px; display: flex; justify-content: center; align-items: center;">
+                        <img src="analysis_results/price_chart_龟排腱_20250627_175930.png" alt="龟排腱价格走势图" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                    </div>
+                </div>
+                
+                <!-- 大米龙图表 -->
+                <div class="chart-card p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold">大米龙交易指数</h3>
+                        <div class="text-sm text-gray-500">
+                            <span class="px-2 py-1 bg-gray-100 rounded">指数：58.920</span>
+                            <span class="px-2 py-1 bg-green-50 text-green-600 rounded ml-2">-0.07%</span>
+                        </div>
+                    </div>
+                    <div class="w-full" style="height: 600px; display: flex; justify-content: center; align-items: center;">
+                        <img src="analysis_results/price_chart_大米龙_20250627_175930.png" alt="大米龙价格走势图" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                    </div>
+                </div>
+                
+                <!-- 牛霖图表 -->
+                <div class="chart-card p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold">牛霖交易指数</h3>
+                        <div class="text-sm text-gray-500">
+                            <span class="px-2 py-1 bg-gray-100 rounded">指数：57.420</span>
+                            <span class="px-2 py-1 bg-red-50 text-red-600 rounded ml-2">+0.21%</span>
+                        </div>
+                    </div>
+                    <div class="w-full" style="height: 600px; display: flex; justify-content: center; align-items: center;">
+                        <img src="analysis_results/price_chart_牛霖_20250627_175930.png" alt="牛霖价格走势图" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                    </div>
+                </div>
+
+                <!-- 牛腩图表 -->
+                <div class="chart-card p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold">牛腩交易指数</h3>
+                        <div class="text-sm text-gray-500">
+                            <span class="px-2 py-1 bg-gray-100 rounded">指数：41.640</span>
+                            <span class="px-2 py-1 bg-red-50 text-red-600 rounded ml-2">+0.19%</span>
+                        </div>
+                    </div>
+                    <div class="w-full" style="height: 600px; display: flex; justify-content: center; align-items: center;">
+                        <img src="analysis_results/price_chart_牛腩_20250627_175930.png" alt="牛腩价格走势图" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                    </div>
+                </div>
+
+                <!-- 牛前后图表 -->
+                <div class="chart-card p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold">牛前后交易指数</h3>
+                        <div class="text-sm text-gray-500">
+                            <span class="px-2 py-1 bg-gray-100 rounded">指数：44.340</span>
+                            <span class="px-2 py-1 bg-red-50 text-red-600 rounded ml-2">+0.54%</span>
+                        </div>
+                    </div>
+                    <div class="w-full" style="height: 600px; display: flex; justify-content: center; align-items: center;">
+                        <img src="analysis_results/price_chart_牛前后_20250627_175930.png" alt="牛前后价格走势图" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                    </div>
+                </div>
+
+                <!-- 牛前八件套图表 -->
+                <div class="chart-card p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold">牛前八件套交易指数</h3>
+                        <div class="text-sm text-gray-500">
+                            <span class="px-2 py-1 bg-gray-100 rounded">指数：52.56</span>
+                            <span class="px-2 py-1 bg-gray-100 rounded ml-2">-0.01%</span>
+                        </div>
+                    </div>
+                    <div class="w-full" style="height: 600px; display: flex; justify-content: center; align-items: center;">
+                        <img src="analysis_results/price_chart_牛前八件套_20250627_175930.png" alt="牛前八件套价格走势图" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                    </div>
+                </div>
+
+                <!-- 去盖臀肉图表 -->
+                <div class="chart-card p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold">去盖臀肉交易指数</h3>
+                        <div class="text-sm text-gray-500">
+                            <span class="px-2 py-1 bg-gray-100 rounded">指数：59.60</span>
+                            <span class="px-2 py-1 bg-red-50 text-red-600 rounded ml-2">-0.33%</span>
+                        </div>
+                    </div>
+                    <div class="w-full" style="height: 600px; display: flex; justify-content: center; align-items: center;">
+                        <img src="analysis_results/price_chart_去盖臀肉_20250627_175930.png" alt="去盖臀肉价格走势图" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 术语解释和价格发现机制 -->
+    <section class="py-8 bg-amber-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <!-- 术语解释 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                    <h3 class="text-xl font-bold text-amber-800 mb-4">技术指标说明</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-amber-700 flex items-center">
+                                    <i class="fas fa-chart-line mr-2"></i>
+                                    K线结构
+                                </h4>
+                                <p class="text-gray-600 mt-2">
+                                    采用标准K线图展示开盘价、最高价、最低价和收盘价。红色K线表示上涨趋势，绿色K线表示下跌趋势，实体长度反映价格波动幅度。
+                                </p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-amber-700 flex items-center">
+                                    <i class="fas fa-wave-square mr-2"></i>
+                                    移动平均线
+                                </h4>
+                                <p class="text-gray-600 mt-2">
+                                    结合3日和7日移动平均线，用于识别短期和中期趋势。两条均线的交叉点往往代表重要的趋势转换信号。
+                                </p>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-amber-700 flex items-center">
+                                    <i class="fas fa-chart-bar mr-2"></i>
+                                    成交量指标
+                                </h4>
+                                <p class="text-gray-600 mt-2">
+                                    柱状图反映市场交易活跃度，颜色与K线保持一致。成交量的变化可以验证价格走势的有效性。
+                                </p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-amber-700 flex items-center">
+                                    <i class="fas fa-bolt mr-2"></i>
+                                    价格突破
+                                </h4>
+                                <p class="text-gray-600 mt-2">
+                                    当价格突破关键支撑位或阻力位时，结合成交量变化判断突破的有效性，为市场趋势判断提供重要参考。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 价格发现机制 -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-amber-800 mb-4">价格发现机制</h3>
+                    
+                    <!-- 数据处理流程表格 -->
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-amber-200">
+                            <thead>
+                                <tr class="bg-amber-50">
+                                    <th class="px-4 py-3 border-b text-left text-amber-800">数据维度</th>
+                                    <th class="px-4 py-3 border-b text-left text-amber-800">处理方法</th>
+                                    <th class="px-4 py-3 border-b text-left text-amber-800">指数应用</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-amber-200">
+                                <tr class="hover:bg-amber-50">
+                                    <td class="px-4 py-3">原始数据采集</td>
+                                    <td class="px-4 py-3">
+                                        • 供应商报价数据<br/>
+                                        • 市场成交数据<br/>
+                                        • 贸易商报价数据
+                                    </td>
+                                    <td class="px-4 py-3">构建基础价格数据池</td>
+                                </tr>
+                                <tr class="hover:bg-amber-50">
+                                    <td class="px-4 py-3">厂号流通分析</td>
+                                    <td class="px-4 py-3">
+                                        • 统计月度流通量<br/>
+                                        • 计算流通占比<br/>
+                                        • 确定权重系数
+                                    </td>
+                                    <td class="px-4 py-3">动态调整产品权重</td>
+                                </tr>
+                                <tr class="hover:bg-amber-50">
+                                    <td class="px-4 py-3">数据标准化</td>
+                                    <td class="px-4 py-3">
+                                        • 异常值处理<br/>
+                                        • 时效性评估<br/>
+                                        • 数据补齐
+                                    </td>
+                                    <td class="px-4 py-3">提升数据可靠性</td>
+                                </tr>
+                                <tr class="hover:bg-amber-50">
+                                    <td class="px-4 py-3">指数计算</td>
+                                    <td class="px-4 py-3">
+                                        • 加权平均计算<br/>
+                                        • 时间序列平滑<br/>
+                                        • 实时更新
+                                    </td>
+                                    <td class="px-4 py-3">生成最终指数</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 核心计算公式 -->
+                    <div class="mt-8 space-y-6">
+                        <div class="bg-amber-50 p-6 rounded-lg">
+                            <h4 class="font-semibold text-amber-800 mb-4">核心计算方法</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="font-medium text-gray-700 mb-2">1. 单品指数计算</p>
+                                    <div class="pl-4 space-y-2 text-sm text-gray-600">
+                                        <p>• 基础公式：单品指数 = Σ(原始价格 × 流通量权重 × 时效性系数)</p>
+                                        <p>• 原始价格：采用当日收盘价，若无成交则取最近有效报价</p>
+                                        <p>• 时效性系数：基于数据时间衰减模型，24小时内为1.0，48小时内为0.8，72小时内为0.5</p>
+                                        <p>• 异常处理：剔除超出3σ范围的极端值，确保指数稳定性</p>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <p class="font-medium text-gray-700 mb-2">2. 流通量权重计算</p>
+                                    <div class="pl-4 space-y-2 text-sm text-gray-600">
+                                        <p>• 基础公式：流通量权重 = 厂号月度流通量 / 总流通量</p>
+                                        <p>• 流通量统计：采用近30天滚动成交量，剔除异常交易</p>
+                                        <p>• 权重上限：单个厂号权重不超过30%，避免个别样本过度影响</p>
+                                        <p>• 动态调整：每周更新一次权重系数，保持指数的市场代表性</p>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <p class="font-medium text-gray-700 mb-2">3. 指数校准机制</p>
+                                    <div class="pl-4 space-y-2 text-sm text-gray-600">
+                                        <p>• 样本筛选：剔除连续5天无成交的厂号，保证样本活跃度</p>
+                                        <p>• 价格修正：考虑季节性因素和市场特殊事件的影响</p>
+                                        <p>• 数据补齐：对于暂无成交的样本，采用近期均价和市场趋势进行估算</p>
+                                        <p>• 权重再平衡：每月末对样本池进行审核，根据市场变化调整权重分布</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center text-gray-400 text-sm">
+                © 2025 Mooket 产品指数中心
+            </div>
+        </div>
+    </footer>
+
+    <!-- 图表脚本 -->
+    <script>
+        // 生成模拟数据的函数
+        function generateCandlestickData(startDate, days, basePrice, volatility) {
+            const data = [];
+            let currentPrice = basePrice;
+            
+            for (let i = 0; i < days; i++) {
+                const date = new Date(startDate);
+                date.setDate(date.getDate() + i);
+                
+                // 生成当天的OHLC数据
+                const open = currentPrice * (1 + (Math.random() - 0.5) * volatility);
+                const high = open * (1 + Math.random() * volatility);
+                const low = open * (1 - Math.random() * volatility);
+                const close = (high + low) / 2 + (Math.random() - 0.5) * volatility * open;
+                
+                // 生成成交量数据
+                const volume = Math.floor(Math.random() * 1000) + 500;
+                
+                data.push({
+                    date: date,
+                    open: open,
+                    high: high,
+                    low: low,
+                    close: close,
+                    volume: volume
+                });
+                
+                currentPrice = close;
+            }
+            
+            return data;
+        }
+
+        // 计算移动平均线
+        function calculateMA(data, period) {
+            const ma = [];
+            for (let i = 0; i < data.length; i++) {
+                if (i < period - 1) {
+                    ma.push(null);
+                    continue;
+                }
+                let sum = 0;
+                for (let j = 0; j < period; j++) {
+                    sum += data[i - j].close;
+                }
+                ma.push(sum / period);
+            }
+            return ma;
+        }
+
+        // 生成各产品的模拟数据
+        const startDate = new Date('2025-03-01');
+        const daysToSimulate = 118; // 3月1日到6月26日
+
+        const productAData = generateCandlestickData(startDate, daysToSimulate, 45, 0.02);
+        const productBData = generateCandlestickData(startDate, daysToSimulate, 35, 0.015);
+        const productCData = generateCandlestickData(startDate, daysToSimulate, 60, 0.018);
+        const productDData = generateCandlestickData(startDate, daysToSimulate, 52, 0.016);
+
+        // 创建产品A的图表（带成交量）
+        const chartA = document.getElementById('chartA');
+        Plotly.newPlot(chartA, [
+            {
+                type: 'candlestick',
+                x: productAData.map(d => d.date),
+                open: productAData.map(d => d.open),
+                high: productAData.map(d => d.high),
+                low: productAData.map(d => d.low),
+                close: productAData.map(d => d.close),
+                name: '价格',
+                increasing: {line: {color: '#FF4136'}},
+                decreasing: {line: {color: '#2ECC40'}}
+            },
+            {
+                type: 'scatter',
+                x: productAData.map(d => d.date),
+                y: calculateMA(productAData, 3),
+                name: 'MA3',
+                line: {color: '#FF851B', width: 1}
+            },
+            {
+                type: 'scatter',
+                x: productAData.map(d => d.date),
+                y: calculateMA(productAData, 7),
+                name: 'MA7',
+                line: {color: '#0074D9', width: 1}
+            },
+            {
+                type: 'bar',
+                x: productAData.map(d => d.date),
+                y: productAData.map(d => d.volume),
+                name: '成交量',
+                yaxis: 'y2',
+                marker: {
+                    color: productAData.map(d => d.close >= d.open ? '#FF4136' : '#2ECC40')
+                }
+            }
+        ], {
+            dragmode: 'zoom',
+            showlegend: true,
+            xaxis: {
+                rangeslider: {visible: false},
+                title: '日期'
+            },
+            yaxis: {
+                title: '价格',
+                autorange: true,
+                domain: [0.3, 1]
+            },
+            yaxis2: {
+                title: '成交量',
+                autorange: true,
+                domain: [0, 0.2]
+            },
+            annotations: [{
+                x: productAData[productAData.length - 1].date,
+                y: productAData[productAData.length - 1].close,
+                text: '最新价: ' + productAData[productAData.length - 1].close.toFixed(2),
+                showarrow: true,
+                arrowhead: 2,
+                arrowsize: 1,
+                arrowwidth: 2,
+                ax: -30,
+                ay: -30
+            }]
+        });
+
+        // 创建产品C的图表
+        const chartC = document.getElementById('chartC');
+        Plotly.newPlot(chartC, [
+            {
+                type: 'candlestick',
+                x: productCData.map(d => d.date),
+                open: productCData.map(d => d.open),
+                high: productCData.map(d => d.high),
+                low: productCData.map(d => d.low),
+                close: productCData.map(d => d.close),
+                name: '价格',
+                increasing: {line: {color: '#FF4136'}},
+                decreasing: {line: {color: '#2ECC40'}}
+            },
+            {
+                type: 'scatter',
+                x: productCData.map(d => d.date),
+                y: calculateMA(productCData, 3),
+                name: 'MA3',
+                line: {color: '#FF851B', width: 1}
+            },
+            {
+                type: 'scatter',
+                x: productCData.map(d => d.date),
+                y: calculateMA(productCData, 7),
+                name: 'MA7',
+                line: {color: '#0074D9', width: 1}
+            }
+        ], {
+            dragmode: 'zoom',
+            showlegend: true,
+            xaxis: {
+                rangeslider: {visible: false},
+                title: '日期'
+            },
+            yaxis: {title: '价格'},
+            annotations: [{
+                x: productCData[productCData.length - 1].date,
+                y: productCData[productCData.length - 1].close,
+                text: '最新价: ' + productCData[productCData.length - 1].close.toFixed(2),
+                showarrow: true,
+                arrowhead: 2,
+                arrowsize: 1,
+                arrowwidth: 2,
+                ax: -30,
+                ay: -30
+            }]
+        });
+
+        // 创建产品D的图表
+        const chartD = document.getElementById('chartD');
+        Plotly.newPlot(chartD, [
+            {
+                type: 'candlestick',
+                x: productDData.map(d => d.date),
+                open: productDData.map(d => d.open),
+                high: productDData.map(d => d.high),
+                low: productDData.map(d => d.low),
+                close: productDData.map(d => d.close),
+                name: '价格',
+                increasing: {line: {color: '#FF4136'}},
+                decreasing: {line: {color: '#2ECC40'}}
+            },
+            {
+                type: 'scatter',
+                x: productDData.map(d => d.date),
+                y: calculateMA(productDData, 3),
+                name: 'MA3',
+                line: {color: '#FF851B', width: 1}
+            },
+            {
+                type: 'scatter',
+                x: productDData.map(d => d.date),
+                y: calculateMA(productDData, 7),
+                name: 'MA7',
+                line: {color: '#0074D9', width: 1}
+            }
+        ], {
+            dragmode: 'zoom',
+            showlegend: true,
+            xaxis: {
+                rangeslider: {visible: false},
+                title: '日期'
+            },
+            yaxis: {title: '价格'},
+            annotations: [{
+                x: productDData[productDData.length - 1].date,
+                y: productDData[productDData.length - 1].close,
+                text: '最新价: ' + productDData[productDData.length - 1].close.toFixed(2),
+                showarrow: true,
+                arrowhead: 2,
+                arrowsize: 1,
+                arrowwidth: 2,
+                ax: -30,
+                ay: -30
+            }]
+        });
+    </script>
+</body>
+</html> 
