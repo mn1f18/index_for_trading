@@ -33,7 +33,7 @@ def convert_html_to_image():
 
         # 获取当前工作目录的绝对路径
         current_dir = os.getcwd()
-        html_path = os.path.join(current_dir, 'onepage.html')
+        html_path = os.path.join(current_dir, 'onepage_客户B.html')
         html_url = f"file:///{html_path}"
 
         print("正在启动Chrome浏览器...")
@@ -49,6 +49,27 @@ def convert_html_to_image():
 
         # 等待页面加载完成
         time.sleep(5)
+        
+        # 隐藏滚动条
+        print("正在隐藏滚动条...")
+        hide_scrollbar_script = """
+        var style = document.createElement('style');
+        style.innerHTML = `
+            ::-webkit-scrollbar {
+                display: none !important;
+            }
+            html {
+                -ms-overflow-style: none !important;
+                scrollbar-width: none !important;
+            }
+            body {
+                -ms-overflow-style: none !important;
+                scrollbar-width: none !important;
+            }
+        `;
+        document.head.appendChild(style);
+        """
+        driver.execute_script(hide_scrollbar_script)
 
         # 获取页面实际高度并调整窗口大小
         page_height = driver.execute_script('return document.documentElement.scrollHeight')
