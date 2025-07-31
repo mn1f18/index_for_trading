@@ -34,7 +34,7 @@ def convert_png_to_pdf(png_file, output_dir='output_reports', password=None):
 
 if __name__ == '__main__':
     # 转换最新的价格指数报告
-    png_file = '关键部位均权指数MK20250715-A-2.png'
+    png_file = '关键部位均权指数MK20250730-A-6.png'
     output_dir = 'output_reports'  # 设置输出目录
     
     if os.path.exists(png_file):

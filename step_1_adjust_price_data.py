@@ -3,8 +3,8 @@ import numpy as np
 from datetime import datetime
 
 # 设置需要模拟的日期范围
-start_date = '2025-07-01'  # 开始日期
-end_date = '2026-06-30'    # 结束日期
+start_date = '2025-07-16'  # 开始日期
+end_date = '2026-07-30'    # 结束日期
 
 # 价格整体调整变量（单位：元）
 # 正数表示上调，负数表示下调，0表示不调整
@@ -16,6 +16,9 @@ EXCLUDE_PRODUCTS = [" "]  # 可以添加多个产品，如 ["牛腩", "大米龙
 
 # 读取原始数据
 df = pd.read_excel('价格数据模版.xlsx')
+
+# 按SKU名称和日期升序排序，确保每个品类的时间序列有序
+df = df.sort_values(['SKU名称', '日期']).reset_index(drop=True)
 
 # 确保日期列是datetime格式
 df['日期'] = pd.to_datetime(df['日期'])
@@ -125,9 +128,9 @@ def adjust_prices(row):
     
     # 确保价格不会出现负数，并且保持适当的精度
     result = {
-        '开盘价': round(max(open_price, 0), 3),  # 总是返回开盘价（模拟或修正后的）
-        '最高价': round(max(high_price, 0), 3),
-        '最低价': round(max(low_price, 0), 3)
+        '开盘价': round(max(open_price, 0), 2),  # 总是返回开盘价（模拟或修正后的）
+        '最高价': round(max(high_price, 0), 2),
+        '最低价': round(max(low_price, 0), 2)
     }
     
     return pd.Series(result)
