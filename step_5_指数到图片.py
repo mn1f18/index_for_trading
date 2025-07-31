@@ -33,7 +33,7 @@ def convert_html_to_image():
 
         # 获取当前工作目录的绝对路径
         current_dir = os.getcwd()
-        html_path = os.path.join(current_dir, 'onepage_客户A.html')
+        html_path = os.path.join(current_dir, 'rwa(1).html')
         html_url = f"file:///{html_path}"
 
         print("正在启动Chrome浏览器...")

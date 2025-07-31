@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RWA资产数字化流程</title>
+    <link href="https://cdn.staticfile.org/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@latest/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #4A90E2;
+            --secondary-color: #50E3C2;
+        }
+        
+        body {
+            font-family: "Noto Sans SC", Tahoma, Arial, "Helvetica Neue", "Droid Sans Fallback", "Heiti SC", "Hiragino Sans GB", Simsun, sans-serif;
+        }
+
+        .dark {
+            background-color: #1a1a1a;
+            color: #e5e5e5;
+        }
+
+        .term-card {
+            transition: all 0.3s ease;
+        }
+
+        .term-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .icon-container {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+    <!-- 导航栏 -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold text-gray-800 dark:text-white">RWA资产数字化流程</span>
+                </div>
+                <div class="flex items-center">
+                    <button id="darkModeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+                        <i class="fas fa-moon dark:text-yellow-300 hidden dark:block"></i>
+                        <i class="fas fa-sun text-yellow-500 block dark:hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="pt-20 pb-12">
+        <!-- 名词解释部分 -->
+        <section class="max-w-7xl mx-auto px-4 mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-center text-gray-800 dark:text-white">核心概念解释</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- RWA -->
+                <div class="term-card bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <div class="icon-container text-blue-500">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">📦 资产载体 (RWA)</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Real-World Asset - 来自现实世界的资产单元，具有明确所有权和价值，经结构化后可在金融系统中使用。</p>
+                    <div class="mt-4 border-t pt-4 dark:border-gray-700">
+                        <h4 class="font-semibold mb-2 text-gray-700 dark:text-gray-300">核心价值：</h4>
+                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                            <i class="fas fa-info-circle mr-1"></i>
+                            示例：企业可将持有的标的物数字化后进行质押融资，盘活资产
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Tokenization -->
+                <div class="term-card bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <div class="icon-container text-green-500">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">🏷️ 数字凭证</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Tokenization - 用唯一ID标识的数字化货权，具备估值与流通能力（非币、是资产）</p>
+                </div>
+
+                <!-- Portfolio Pool -->
+                <div class="term-card bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <div class="icon-container text-purple-500">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">📊 资产管理</h3>
+                    <p class="text-gray-600 dark:text-gray-300">组合池（Portfolio Pool）- 可将多个SKU（如牛腱+上脑）配置成组合，用于策略执行</p>
+                </div>
+
+                <!-- DeFi Lending -->
+                <div class="term-card bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <div class="icon-container text-yellow-500">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">💵 金融产品化</h3>
+                    <p class="text-gray-600 dark:text-gray-300">DeFi Lending / Real-Yield池 - 该资产可作为质押物进入链上或链下授信结构，支持借贷/分利</p>
+                </div>
+
+                <!-- Oracle -->
+                <div class="term-card bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <div class="icon-container text-red-500">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">📉 估值机制</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Oracle / 盯市系统 - 每日盯市价格 → 更新Token估值 → 实现动态风控</p>
+                </div>
+
+                <!-- IoT Verification -->
+                <div class="term-card bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <div class="icon-container text-indigo-500">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">🔍 穿透机制</h3>
+                    <p class="text-gray-600 dark:text-gray-300">IoT-based Verification - IoT设备确认冷链状态（温度、位置、视频），保证资产真实存在</p>
+                </div>
+
+                <!-- Smart Contract -->
+                <div class="term-card bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <div class="icon-container text-teal-500">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">🔐 合约规则</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Smart Contract监管仓 - 一旦资产进入合约绑定路径，资金释放/到期收回按链上逻辑处理</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- What部分 - RWA详细解释 -->
+        <section class="max-w-7xl mx-auto px-4 mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-center text-gray-800 dark:text-white">What - RWA资产载体详解</h2>
+            
+            <!-- RWA解释 -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg mb-8">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-cube text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold ml-4 text-gray-800 dark:text-white">RWA（Real-World Asset）概念</h3>
+                </div>
+                <div class="prose dark:prose-invert max-w-none">
+                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                        RWA（Real-World Asset）指的是来自现实世界、具有明确所有权和价值的资产单元。其核心价值在于与现实经济的强关联性，体现在三个关键维度：可验证性、估值基础与法权保障。
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        <div class="border dark:border-gray-700 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-800 dark:text-white mb-2">可验证性</h4>
+                            <p class="text-gray-600 dark:text-gray-300">每一项资产都有其现实世界的交易记录、生产流程等可追溯信息</p>
+                        </div>
+                        <div class="border dark:border-gray-700 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-800 dark:text-white mb-2">估值基础</h4>
+                            <p class="text-gray-600 dark:text-gray-300">源于资产本身的物理特性、市场供需关系等客观因素</p>
+                        </div>
+                        <div class="border dark:border-gray-700 rounded-lg p-4">
+                            <h4 class="font-semibold text-gray-800 dark:text-white mb-2">法权保障</h4>
+                            <p class="text-gray-600 dark:text-gray-300">通过法律法规明确资产的所有权与交易规则</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                        经过结构化和数字化处理后，这些资产便可进入金融系统用于质押、融资、分利或资产证券化等多种应用。值得注意的是，稳定币只是RWA产品中的一种货币类应用。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tokenization解释 -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-link text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold ml-4 text-gray-800 dark:text-white">Tokenization（数字凭证）过程</h3>
+                </div>
+                <div class="prose dark:prose-invert max-w-none">
+                    <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                        Tokenization 是将传统资产以加密方式映射到区块链系统上的过程。其核心在于利用分布式账本记录资产的身份、权属、估值及历史流转轨迹，从而实现一系列特性：
+                    </p>
+                    <div class="space-y-6">
+                        <div class="border dark:border-gray-700 rounded-lg p-6">
+                            <h4 class="font-semibold text-gray-800 dark:text-white mb-3">数字身份化</h4>
+                            <p class="text-gray-600 dark:text-gray-300">每一笔实物资产通过区块链获得唯一ID，就如同每个人拥有独一无二的身份证号。例如，一块冷冻牛肉从巴西屠宰场产出时，便被赋予一个基于区块链的唯一ID，后续其在物流、仓储、交易等各个环节的信息都与该ID绑定。</p>
+                        </div>
+                        <div class="border dark:border-gray-700 rounded-lg p-6">
+                            <h4 class="font-semibold text-gray-800 dark:text-white mb-3">实时透明</h4>
+                            <p class="text-gray-600 dark:text-gray-300">资产的状态变化、估值变动可公开查询。在冷链运输过程中，冷冻牛肉的温度变化、运输位置移动等信息通过IoT设备采集后实时上传至区块链，相关利益方都能随时查看，确保资产状态的透明性。</p>
+                        </div>
+                        <div class="border dark:border-gray-700 rounded-lg p-6">
+                            <h4 class="font-semibold text-gray-800 dark:text-white mb-3">合规可控</h4>
+                            <p class="text-gray-600 dark:text-gray-300">通过智能合约控制资产的流转路径、用途范围。比如，在冷冻牛肉的交易中，智能合约可以规定其只能销售给具有特定资质（或者白名单）的企业，且在特定的时间、地点进行交付，保证交易的合规性。</p>
+                        </div>
+                    </div>
+                    <div class="mt-8 bg-gray-50 dark:bg-gray-900 rounded-lg p-6">
+                        <h4 class="font-semibold text-gray-800 dark:text-white mb-3">实际应用案例</h4>
+                        <ul class="list-disc ml-6 text-gray-600 dark:text-gray-300 space-y-2">
+                            <li>新加坡MAS（金融管理局）支持的Token化国债，提高了国债交易的效率与透明度</li>
+                            <li>香港金发局支持的资产证券化债券，为投资者提供了更多元化的投资选择</li>
+                            <li>港口冻品通过唯一标签接入仓单系统后进行数字化融资，解决传统贸易中融资难、账期长的问题</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why部分 -->
+        <section class="max-w-7xl mx-auto px-4 mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-center text-gray-800 dark:text-white">Why - 为何中国适合推进RWA资产数字化？</h2>
+            
+            <div class="space-y-8">
+                <!-- 市场需求推动 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-chart-line text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold ml-4 text-gray-800 dark:text-white">市场需求推动</h3>
+                    </div>
+                    <div class="prose dark:prose-invert max-w-none">
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                            中国是全球最大冷链肉类进口国，进口量持续增长。然而，传统贸易方式存在诸多痛点，严重制约了行业发展：
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                            <div class="border dark:border-gray-700 rounded-lg p-4">
+                                <h4 class="font-semibold text-gray-800 dark:text-white mb-2">流转效率低</h4>
+                                <p class="text-gray-600 dark:text-gray-300">从国外供应商到国内经销商，中间环节众多，信息传递不及时</p>
+                            </div>
+                            <div class="border dark:border-gray-700 rounded-lg p-4">
+                                <h4 class="font-semibold text-gray-800 dark:text-white mb-2">账期过长</h4>
+                                <p class="text-gray-600 dark:text-gray-300">通常在数月之久，占用企业大量资金</p>
+                            </div>
+                            <div class="border dark:border-gray-700 rounded-lg p-4">
+                                <h4 class="font-semibold text-gray-800 dark:text-white mb-2">融资困难</h4>
+                                <p class="text-gray-600 dark:text-gray-300">中小企业由于缺乏有效抵押物，难以从金融机构获得足够融资</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 政策鼓励 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-file-contract text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold ml-4 text-gray-800 dark:text-white">政策鼓励数字实物金融化</h3>
+                    </div>
+                    <div class="prose dark:prose-invert max-w-none">
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                            各类支持政策纷纷出台，大力支持贸易与金融融合：
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="border dark:border-gray-700 rounded-lg p-6">
+                                <h4 class="font-semibold text-gray-800 dark:text-white mb-3">海南自贸港优势</h4>
+                                <p class="text-gray-600 dark:text-gray-300">凭借跨境数据流动试点等独特政策优势，为冻品类RWA资产数字化提供了良好的试验田</p>
+                            </div>
+                            <div class="border dark:border-gray-700 rounded-lg p-6">
+                                <h4 class="font-semibold text-gray-800 dark:text-white mb-3">港口试点</h4>
+                                <p class="text-gray-600 dark:text-gray-300">青岛、广州、天津、上海等港口正在积极试点基于仓单的资产融资，推动冻品资产数字化进程</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 技术基础 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-microchip text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold ml-4 text-gray-800 dark:text-white">技术基础具备</h3>
+                    </div>
+                    <div class="prose dark:prose-invert max-w-none">
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                            IoT设备、数字仓单系统、链上审计平台日趋成熟：
+                        </p>
+                        <ul class="list-disc ml-6 text-gray-600 dark:text-gray-300 space-y-3">
+                            <li>多个港口已实现温控GPS闭环系统，适配冻品场景</li>
+                            <li>IoT设备可实时采集温度、湿度、位置等数据，并通过无线网络上传至数字仓单系统</li>
+                            <li>链上审计平台确保数据的真实性与不可篡改，为冻品资产的数字化管理与金融化操作提供坚实的技术保障</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 参与者积极性 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-users text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold ml-4 text-gray-800 dark:text-white">参与者积极性高</h3>
+                    </div>
+                    <div class="prose dark:prose-invert max-w-none">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                            <div class="border dark:border-gray-700 rounded-lg p-4">
+                                <h4 class="font-semibold text-gray-800 dark:text-white mb-2">冻品贸易商</h4>
+                                <p class="text-gray-600 dark:text-gray-300">提高资金周转速度，拓展融资渠道，增强市场竞争力</p>
+                            </div>
+                            <div class="border dark:border-gray-700 rounded-lg p-4">
+                                <h4 class="font-semibold text-gray-800 dark:text-white mb-2">金融机构</h4>
+                                <p class="text-gray-600 dark:text-gray-300">创新金融产品与服务，开拓新的业务增长点</p>
+                            </div>
+                            <div class="border dark:border-gray-700 rounded-lg p-4">
+                                <h4 class="font-semibold text-gray-800 dark:text-white mb-2">科技服务商</h4>
+                                <p class="text-gray-600 dark:text-gray-300">提供技术支持与解决方案，实现互利共赢</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                            各方在"资产穿透 — 数字登记 — 组合融资"等环节均具有强烈的合作动机，共同推动冻品类RWA资产数字化发展。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 流程部分 -->
+        <section class="max-w-7xl mx-auto px-4 mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-center text-gray-800 dark:text-white">RWA资产数字化流程</h2>
+            
+            <!-- Mermaid流程图 -->
+            <div class="mb-12 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg overflow-x-auto">
+                <pre class="mermaid">
+                    graph LR
+                    A["🔵 实物资产起点
+                    ---
+                    • 巴西屠宰场
+                    • 肉牛分割
+                    • 基础标签
+                    ---
+                    未金融化状态"]
+                    
+                    B["🟢 加工包装
+                    ---
+                    • 定量包装
+                    • 出厂标签
+                    • 合规文件
+                    ---
+                    首次结构化"]
+                    
+                    C["🟡 国际物流
+                    ---
+                    • 冷冻集装箱
+                    • GPS追踪
+                    • 温控记录
+                    ---
+                    IoT验证"]
+                    
+                    D["🟠 冷库入库
+                    ---
+                    • 白名单冷库
+                    • 验货抽检
+                    • 唯一编号
+                    ---
+                    确权完成"]
+                    
+                    E["🔴 资产中台
+                    ---
+                    • 实时估值
+                    • 等级分类
+                    • 信用评级
+                    ---
+                    数字化完成"]
+                    
+                    F["🟣 金融化路径
+                    ---
+                    • 组合打包
+                    • 风险评估
+                    • DeFi接入
+                    ---
+                    RWA形成"]
+
+                    A -->|"结构化"| B
+                    B -->|"IoT追踪"| C
+                    C -->|"验证确权"| D
+                    D -->|"数字化"| E
+                    E -->|"金融化"| F
+
+                    style A fill:#4A90E2,stroke:#fff,stroke-width:2px,color:#fff
+                    style B fill:#50E3C2,stroke:#fff,stroke-width:2px,color:#fff
+                    style C fill:#FFD700,stroke:#fff,stroke-width:2px,color:#000
+                    style D fill:#FF8C00,stroke:#fff,stroke-width:2px,color:#fff
+                    style E fill:#FF4500,stroke:#fff,stroke-width:2px,color:#fff
+                    style F fill:#8A2BE2,stroke:#fff,stroke-width:2px,color:#fff
+                </pre>
+            </div>
+
+            <!-- 时间线 -->
+            <div class="space-y-12">
+                <!-- 阶段一 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white text-2xl">
+                            🔵
+                        </div>
+                        <h3 class="text-xl font-bold ml-4 text-gray-800 dark:text-white">阶段一：实物资产的起点 —— 巴西屠宰场</h3>
+                    </div>
+                    <div class="ml-16">
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">关键词：起点 / 物理资产</p>
+                        <ul class="list-disc ml-6 text-gray-600 dark:text-gray-300">
+                            <li>一头肉牛在巴西被屠宰</li>
+                            <li>分割为多个部位：如牛腱、板腱、上脑、肋条等</li>
+                            <li>每个部位都会有基本标签（批次、重量、日期、厂号）</li>
+                        </ul>
+                        <p class="mt-4 text-blue-500 dark:text-blue-400">📌 价值逻辑：这是原始的"实物资产"，尚不可交易、不可估值、不可金融化。</p>
+                    </div>
+                </div>
+
+                <!-- 阶段二 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white text-2xl">
+                            🟢
+                        </div>
+                        <h3 class="text-xl font-bold ml-4 text-gray-800 dark:text-white">阶段二：加工包装 + 出口准备</h3>
+                    </div>
+                    <div class="ml-16">
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">关键词：首次结构化 / 入链准备</p>
+                        <ul class="list-disc ml-6 text-gray-600 dark:text-gray-300">
+                            <li>肉品被装箱（每箱为若干袋定量包装）</li>
+                            <li>贴上出厂标签、出厂清单、工厂注册号（合规信息）</li>
+                            <li>准备出口：制作卫生证、商检证等</li>
+                        </ul>
+                        <p class="mt-4 text-green-500 dark:text-green-400">📌 关键变化："单位资产"开始被统一封装、编号、入档，为后续追踪打下物理基础。</p>
+                    </div>
+                </div>
+
+                <!-- 阶段三 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-white text-2xl">
+                            🟡
+                        </div>
+                        <h3 class="text-xl font-bold ml-4 text-gray-800 dark:text-white">阶段三：国际物流链条（IoT接入点）</h3>
+                    </div>
+                    <div class="ml-16">
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">关键词：可验证 / 可追踪</p>
+                        <ul class="list-disc ml-6 text-gray-600 dark:text-gray-300">
+                            <li>冷冻集装箱通过海运发往中国（如天津港、青岛港）</li>
+                            <li>中途：可接入 GPS、温控记录（温度监控设备）</li>
+                            <li>到港后，进入冷链卡车运输 → 指定白名单冷库</li>
+                        </ul>
+                        <p class="mt-4 text-yellow-500 dark:text-yellow-400">📌 RWA条件1（已满足）：真实存在，且过程可验证</p>
+                        <p class="mt-2 text-yellow-500 dark:text-yellow-400">📌 重要提示：这是物联网（IoT）参与的关键环节。</p>
+                    </div>
+                </div>
+
+                <!-- 阶段四 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white text-2xl">
+                            🟠
+                        </div>
+                        <h3 class="text-xl font-bold ml-4 text-gray-800 dark:text-white">阶段四：中国白名单冷库入库 + 验货 + 再贴标</h3>
+                    </div>
+                    <div class="ml-16">
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">关键词：确权 + 监管接入</p>
+                        <ul class="list-disc ml-6 text-gray-600 dark:text-gray-300">
+                            <li>到港后进入监管仓（白名单冷库）</li>
+                            <li>验货流程：随机抽检部位、标签是否一致</li>
+                            <li>再贴入库标签（唯一编号+仓储编号+单位编码）</li>
+                            <li>进入仓单系统（生成资产ID + 对应数量）</li>
+                        </ul>
+                        <p class="mt-4 text-orange-500 dark:text-orange-400">📌 RWA条件2（已满足）：状态可穿透，可确认唯一货权/质权</p>
+                    </div>
+                </div>
+
+                <!-- 阶段五 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white text-2xl">
+                            🔴
+                        </div>
+                        <h3 class="text-xl font-bold ml-4 text-gray-800 dark:text-white">阶段五：资产中台 + 数字货单系统接入</h3>
+                    </div>
+                    <div class="ml-16">
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">关键词：可估值 + 可组合 + 可风控</p>
+                        <ul class="list-disc ml-6 text-gray-600 dark:text-gray-300">
+                            <li>每张货单接入系统，匹配其：
+                                <ul class="ml-6">
+                                    <li>实时价格（盯市系统）</li>
+                                    <li>等级分类（SKU/肥瘦比识别）</li>
+                                    <li>合作方信用等级</li>
+                                </ul>
+                            </li>
+                            <li>生成数字化货单/仓单结构</li>
+                            <li>可进入组合系统或作为单笔资产参与融资或投资</li>
+                        </ul>
+                        <p class="mt-4 text-red-500 dark:text-red-400">📌 RWA条件3（已满足）：价格可估值、可挂钩金融产品</p>
+                    </div>
+                </div>
+
+                <!-- 阶段六 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white text-2xl">
+                            🟣
+                        </div>
+                        <h3 class="text-xl font-bold ml-4 text-gray-800 dark:text-white">阶段六：资产组合化 / 金融化路径</h3>
+                    </div>
+                    <div class="ml-16">
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">关键词：RWA本质完成</p>
+                        <ul class="list-disc ml-6 text-gray-600 dark:text-gray-300">
+                            <li>被打包成"组合A"：如牛腱+上脑+板腱共50吨</li>
+                            <li>对应价值评估 / 风险等级 / 调仓规则 / 盯市价格</li>
+                            <li>进入：
+                                <ul class="ml-6">
+                                    <li>金融机构授信池</li>
+                                    <li>私募或FOF结构（组合策略）</li>
+                                    <li>RWA托管系统 → 可挂钩 DeFi 或债权融资结构</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <p class="mt-4 text-purple-500 dark:text-purple-400">📌 RWA最终形态：实物资产+可监管+可估值+可组合+可退出，真正成为金融结构中的一环</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 生态角色部分 -->
+        <section class="max-w-7xl mx-auto px-4 mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-center text-gray-800 dark:text-white">参与RWA资产数字化的生态角色</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 资产提供者 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-industry text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold ml-4 text-gray-800 dark:text-white">资产提供者</h3>
+                    </div>
+                    <ul class="list-disc ml-6 text-gray-600 dark:text-gray-300 space-y-2">
+                        <li>巴西大型屠宰场</li>
+                        <li>严格标准生产冷冻牛肉</li>
+                        <li>贴上初始标签与基础数据</li>
+                        <li>国内冻品进口商负责采购、报关</li>
+                    </ul>
+                </div>
+
+                <!-- 物流承运方 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-truck text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold ml-4 text-gray-800 dark:text-white">物流承运方</h3>
+                    </div>
+                    <ul class="list-disc ml-6 text-gray-600 dark:text-gray-300 space-y-2">
+                        <li>提供跨境冷链运输服务</li>
+                        <li>配备IoT监控设备</li>
+                        <li>实时采集GPS位置信息</li>
+                        <li>监控货柜温度数据</li>
+                    </ul>
+                </div>
+
+                <!-- 仓储运营方 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-warehouse text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold ml-4 text-gray-800 dark:text-white">仓储运营方</h3>
+                    </div>
+                    <ul class="list-disc ml-6 text-gray-600 dark:text-gray-300 space-y-2">
+                        <li>白名单冷库运营者</li>
+                        <li>核对货物信息与单据</li>
+                        <li>进行再贴标操作</li>
+                        <li>生成法律效力仓单</li>
+                    </ul>
+                </div>
+
+                <!-- 资产中台平台 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-desktop text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold ml-4 text-gray-800 dark:text-white">资产中台平台</h3>
+                    </div>
+                    <ul class="list-disc ml-6 text-gray-600 dark:text-gray-300 space-y-2">
+                        <li>整合各方资产信息</li>
+                        <li>标准化资产分类</li>
+                        <li>综合评估与定价</li>
+                        <li>提供数据支持与分析</li>
+                    </ul>
+                </div>
+
+                <!-- 金融机构 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-university text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold ml-4 text-gray-800 dark:text-white">金融机构</h3>
+                    </div>
+                    <ul class="list-disc ml-6 text-gray-600 dark:text-gray-300 space-y-2">
+                        <li>银行提供授信额度</li>
+                        <li>保理机构提供资金支持</li>
+                        <li>DeFi平台开发创新产品</li>
+                        <li>拓展投资者参与渠道</li>
+                    </ul>
+                </div>
+
+                <!-- 监管与合规方 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-indigo-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-balance-scale text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold ml-4 text-gray-800 dark:text-white">监管与合规方</h3>
+                    </div>
+                    <ul class="list-disc ml-6 text-gray-600 dark:text-gray-300 space-y-2">
+                        <li>口岸海关严格查验</li>
+                        <li>确保符合法律法规</li>
+                        <li>第三方验货评估</li>
+                        <li>保障各方合法权益</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // 深色模式切换
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const html = document.documentElement;
+
+        // 检查系统颜色模式
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            html.classList.add('dark');
+        }
+
+        // 切换深色模式
+        darkModeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+        });
+
+        // 初始化 Mermaid
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html> 
