@@ -3,7 +3,7 @@ import numpy as np
 from datetime import datetime
 
 # 设置需要模拟的日期范围
-start_date = '2025-07-16'  # 开始日期
+start_date = '2025-07-31'  # 开始日期
 end_date = '2026-07-30'    # 结束日期
 
 # 价格整体调整变量（单位：元）

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上海旅游指南</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@latest/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Noto Sans SC', Tahoma, Arial, Roboto, "Droid Sans", "Helvetica Neue", "Droid Sans Fallback", "Heiti SC", "Hiragino Sans GB", Simsun, sans-serif;
+            background-color: #FFF8F0;
+            color: #333333;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Noto Serif SC', serif;
+            color: #8B4513;
+        }
+
+        .card {
+            background-color: #F5E6D8;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(139, 69, 19, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(139, 69, 19, 0.1);
+        }
+
+        .first-letter::first-letter {
+            font-size: 3.5rem;
+            font-weight: bold;
+            float: left;
+            line-height: 1;
+            margin-right: 0.2rem;
+            color: #8B4513;
+        }
+
+        .location-card {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(139, 69, 19, 0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .location-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(139, 69, 19, 0.1);
+        }
+
+        .chart-container {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(139, 69, 19, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="relative overflow-hidden" style="height: 80vh;">
+        <div class="absolute inset-0 z-0">
+            <div class="w-full h-full bg-gradient-to-r from-amber-50 to-amber-100/90"></div>
+        </div>
+        <div class="relative z-10 container mx-auto px-4 h-full flex flex-col justify-center">
+            <div class="max-w-4xl">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                    <span class="block text-amber-900" style="text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.1);">上海旅游指南</span>
+                    <span class="block text-3xl md:text-4xl mt-4 text-amber-800" style="text-shadow: 1px 1px 3px rgba(139, 69, 19, 0.1);">探索青浦、松江和闵行区的精彩景点与美食</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-amber-800 mb-8 font-medium" style="text-shadow: 1px 1px 2px rgba(139, 69, 19, 0.1);">发现上海的隐藏宝石：古镇、公园与地道美食</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Summary Section -->
+    <section id="summary" class="py-16 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex items-center mb-8">
+                    <div class="h-0.5 bg-amber-600 flex-grow"></div>
+                    <h2 class="text-3xl font-bold px-6 text-amber-800 dark:text-amber-500">指南概述</h2>
+                    <div class="h-0.5 bg-amber-600 flex-grow"></div>
+                </div>
+                <p class="first-letter text-lg leading-relaxed mb-6">
+                    本指南聚焦上海青浦区、松江区和闵行区的旅游景点和美食推荐。每个地点提供详细描述、评分和建议，帮助您规划完美的行程。从古镇到植物园，从地道中餐到特色餐厅，一应俱全。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 青浦区 Section -->
+    <section id="qingpu" class="py-16 bg-amber-50 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-amber-800 dark:text-amber-500">青浦区</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 朱家角古镇 -->
+                <div class="location-card p-6">
+                    <h3 class="text-2xl font-bold text-green-700 mb-2">朱家角古镇</h3>
+                    <div class="text-lg font-medium mb-4 text-green-600">评分: 7.5/10</div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">比较适合晚上去，粽子可以，但是有点商业化，且距离较远，看要不要花个半天时间。</p>
+                    <div class="flex items-center text-green-500">
+                        <i class="fas fa-star mr-2"></i>
+                        <span>适合夜游</span>
+                    </div>
+                </div>
+
+                <!-- 上海蟠龙天地 -->
+                <div class="location-card p-6">
+                    <h3 class="text-2xl font-bold text-blue-700 mb-2">上海蟠龙天地</h3>
+                    <div class="text-lg font-medium mb-4 text-blue-600">评分: 8/10</div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">汇聚了上百家特色商铺，把古镇和商业做了非常好的融合，适合吃特色的东西，比朱家角稍微好点。</p>
+                    <div class="flex items-center text-blue-500">
+                        <i class="fas fa-shopping-bag mr-2"></i>
+                        <span>商业与古镇融合</span>
+                    </div>
+                </div>
+
+                <!-- 中餐推荐 -->
+                <div class="location-card p-6">
+                    <h3 class="text-2xl font-bold text-orange-700 mb-2">中餐推荐</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-utensils text-orange-500 mr-2 mt-1"></i>
+                            <span>名厨本帮菜：基本不踩雷，也适合一家老小。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-utensils text-orange-500 mr-2 mt-1"></i>
+                            <span>芙蓉宵：能吃辣的首选，都是下饭好菜！环境一般哦。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-utensils text-orange-500 mr-2 mt-1"></i>
+                            <span>皖荟：安徽菜，总体菜都ok，也有特色，不适合人多。</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 有意思的餐厅 -->
+                <div class="location-card p-6">
+                    <h3 class="text-2xl font-bold text-purple-700 mb-2">有意思的餐厅</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-campground text-purple-500 mr-2 mt-1"></i>
+                            <span>Camp33：露营餐厅，蟠龙独一份。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-music text-purple-500 mr-2 mt-1"></i>
+                            <span>漾应火塘：Livehouse，蟠龙独一份。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-leaf text-purple-500 mr-2 mt-1"></i>
+                            <span>大象无隅：适合素食者吃的简餐。</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-cloud text-purple-500 mr-2 mt-1"></i>
+                            <span>元古云境：特色餐厅。</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 奥特莱斯 -->
+                <div class="location-card p-6">
+                    <h3 class="text-2xl font-bold text-gray-700 mb-2">奥特莱斯</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">放这里，但是不推荐，因为没啥特色，购物而已。</p>
+                    <div class="flex items-center text-gray-500">
+                        <i class="fas fa-shopping-cart mr-2"></i>
+                        <span>购物场所，不推荐</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 松江区 Section -->
+    <section id="songjiang" class="py-16 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-amber-800 dark:text-amber-500">松江区</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 广富林文化遗址 -->
+                <div class="location-card p-6">
+                    <h3 class="text-2xl font-bold text-green-700 mb-2">广富林文化遗址</h3>
+                    <div class="text-lg font-medium mb-4 text-green-600">评分: 6/10</div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">欣赏遗址风光，但是我觉得就是小水洼，其实附近本身是不太值得去的，倒是那个博物馆建设在水上面，比较有特色。</p>
+                    <div class="flex items-center text-green-500">
+                        <i class="fas fa-monument mr-2"></i>
+                        <span>水上博物馆</span>
+                    </div>
+                </div>
+
+                <!-- 泰晤士小镇 -->
+                <div class="location-card p-6">
+                    <h3 class="text-2xl font-bold text-red-700 mb-2">泰晤士小镇</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">不好玩，不建议去。</p>
+                    <div class="flex items-center text-red-500">
+                        <i class="fas fa-times mr-2"></i>
+                        <span>不推荐</span>
+                    </div>
+                </div>
+
+                <!-- 上海辰山植物园 -->
+                <div class="location-card p-6">
+                    <h3 class="text-2xl font-bold text-blue-700 mb-2">上海辰山植物园</h3>
+                    <div class="text-lg font-medium mb-4 text-blue-600">评分: 7.8/10</div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">是华东地区规模最大的植物园，园内有矿坑花园、岩石和药用植物园等 26 个专类园，能观赏到各种温室，我觉得是最值得去的。</p>
+                    <div class="flex items-center text-blue-500">
+                        <i class="fas fa-leaf mr-2"></i>
+                        <span>华东最大植物园</span>
+                    </div>
+                </div>
+
+                <!-- 欢乐谷 -->
+                <div class="location-card p-6">
+                    <h3 class="text-2xl font-bold text-orange-700 mb-2">欢乐谷</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">特地来上海去欢乐谷有点没必要，不做推荐了。</p>
+                    <div class="flex items-center text-orange-500">
+                        <i class="fas fa-roller-coaster mr-2"></i>
+                        <span>不推荐</span>
+                    </div>
+                </div>
+
+                <!-- 美食推荐 -->
+                <div class="location-card p-6">
+                    <h3 class="text-2xl font-bold text-purple-700 mb-2">美食推荐</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">都是商场，没啥特别特色的，就只能说找点味道还不错的餐厅吧。</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-utensils text-purple-500 mr-2 mt-1"></i>
+                            <span>筱爷叔：总店就在佘山地铁站附近，其实可以花个2小时爬个佘山，然后就去总店吃一波。</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 闵行区 Section -->
+    <section id="minhang" class="py-16 bg-amber-50 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-amber-800 dark:text-amber-500">闵行区</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 浦江郊野公园 -->
+                <div class="location-card p-6">
+                    <h3 class="text-2xl font-bold text-green-700 mb-2">浦江郊野公园</h3>
+                    <div class="text-lg font-medium mb-4 text-green-600">评分: 5/10</div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">有奇迹花园区等区域，夜晚可欣赏萤火虫秘境、山海异兽、奇迹森林等 15 大主题场景的夜游光影秀（所以看灯光秀的可以去，不一定每天都有，但是我觉得比较一般）。</p>
+                    <div class="flex items-center text-green-500">
+                        <i class="fas fa-tree mr-2"></i>
+                        <span>夜游光影秀</span>
+                    </div>
+                </div>
+
+                <!-- 革新村 -->
+                <div class="location-card p-6">
+                    <h3 class="text-2xl font-bold text-red-700 mb-2">革新村</h3>
+                    <div class="text-lg font-medium mb-4 text-red-600">评分: 3/10</div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">位于浦江镇中部东侧，是上海市五个国家级传统村落之一，村域内农田、林木与古镇村落交相呼应，可感受乡村风貌，参观名人故居等历史文化遗产，但是里面啥都没，不做推荐的。</p>
+                    <div class="flex items-center text-red-500">
+                        <i class="fas fa-times mr-2"></i>
+                        <span>不推荐</span>
+                    </div>
+                </div>
+
+                <!-- 方圆生态农业观光园 -->
+                <div class="location-card p-6">
+                    <h3 class="text-2xl font-bold text-blue-700 mb-2">方圆生态农业观光园</h3>
+                    <div class="text-lg font-medium mb-4 text-blue-600">评分: 4/10</div>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">园内绿荫成林，风景宜人，有多种水果可供采摘，其实适合亲子去，我觉得单独旅游也没必要去，除非特别喜欢去自己采东西自己吃，或者农家乐，可以去看看。</p>
+                    <div class="flex items-center text-blue-500">
+                        <i class="fas fa-apple-alt mr-2"></i>
+                        <span>水果采摘</span>
+                    </div>
+                </div>
+
+                <!-- 美食推荐 -->
+                <div class="location-card p-6">
+                    <h3 class="text-2xl font-bold text-purple-700 mb-2">美食推荐</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">闵行区是美食荒漠，都是连锁或者烧烤火锅等，没有特别有特色的东西，但是吃农家乐可以去上面的一些村落或者生态园。</p>
+                    <div class="flex items-center text-purple-500">
+                        <i class="fas fa-utensils mr-2"></i>
+                        <span>农家乐建议</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-amber-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-2">上海旅游指南</h3>
+                    <p class="text-gray-800">探索上海的精彩景点与美食</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-white hover:text-amber-200 transition">
+                        <i class="fab fa-weixin text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-amber-200 transition">
+                        <i class="fab fa-weibo text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-amber-200 transition">
+                        <i class="fas fa-envelope text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-amber-700 text-center text-gray-800 text-sm">
+                © 2025 上海旅游指南
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 初始化Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'neutral',
+            themeVariables: {
+                primaryColor: '#8B4513',
+                primaryTextColor: '#333333',
+                primaryBorderColor: '#CD853F',
+                lineColor: '#D2B48C',
+                secondaryColor: '#F5E6D8',
+                tertiaryColor: '#FFF8F0'
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
