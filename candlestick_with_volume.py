@@ -4,6 +4,11 @@ from plotly.subplots import make_subplots
 from datetime import datetime
 import os
 
+# 自定义标题映射（如果需要为特定产品使用自定义标题）
+CUSTOM_TITLES = {
+    "牛前八件套": "FFQ 8 CUTS index"
+}
+
 # 创建保存结果的目录（如果不存在）
 if not os.path.exists('analysis_results'):
     os.makedirs('analysis_results')
@@ -61,7 +66,7 @@ for product in products_with_volume:
             high=product_df['最高价'],
             low=product_df['最低价'],
             close=product_df['收盘价'],
-            name='K线',
+            name='Candlestick',
             increasing_line_color='red',
             decreasing_line_color='green',
             increasing_line_width=3,
@@ -109,7 +114,7 @@ for product in products_with_volume:
         go.Bar(
             x=product_df['日期'],
             y=product_df['成交指数'],
-            name='成交量',
+            name='Volume',
             marker_color=colors,
             opacity=0.8
         ),
@@ -141,10 +146,13 @@ for product in products_with_volume:
         row=1, col=1
     )
     
+    # 确定图表标题
+    chart_title = CUSTOM_TITLES.get(product, f'{product}指数')
+    
     # 更新布局
     fig.update_layout(
         title=dict(
-            text=f'{product}指数',  # 简化标题格式
+            text=chart_title,  # 使用自定义标题或默认格式
             x=0.5,
             y=0.95,
             font=dict(size=32)
@@ -162,7 +170,7 @@ for product in products_with_volume:
             font=dict(size=20)
         ),
         yaxis=dict(
-            title='价格指数',
+            title='Price Index',
             showgrid=True,
             gridcolor='lightgrey',
             fixedrange=True,
@@ -171,7 +179,7 @@ for product in products_with_volume:
             tickfont=dict(size=20)
         ),
         yaxis2=dict(
-            title='成交量',
+            title='Volume',
             showgrid=True,
             gridcolor='lightgrey',
             title_font=dict(size=24),
@@ -185,7 +193,7 @@ for product in products_with_volume:
             tickfont=dict(size=20)
         ),
         xaxis2=dict(
-            title='日期',
+            title='Date',
             showgrid=True,
             gridcolor='lightgrey',
             title_font=dict(size=20),
