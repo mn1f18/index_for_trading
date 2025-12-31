@@ -4,7 +4,7 @@ from datetime import datetime
 import os
 
 # 自定义文件名称（如果不需要自定义，设置为 None 或 ""）
-CUSTOM_NAME = "客户A"  # 修改这里来指定文件名称，如 "客户A", "测试版本", 等等
+CUSTOM_NAME = "客户B"  # 修改这里来指定文件名称，如 "客户A", "测试版本", 等等
 
 # 创建保存结果的目录（如果不存在）
 if not os.path.exists('analysis_results'):
